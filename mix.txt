@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Article Title Here</title>
+  
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- IBM Plex Sans (weights 400, 500, 600) -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+  <!-- Theme Toggle Switch (fixed top-right) -->
+  <div class="theme-switch">
+    <input type="checkbox" id="switch" />
+    <label for="switch">Toggle</label>
+  </div>
+
+  <!-- Header: Navigation and Meta Information -->
+  <header class="site-header">
+    <!-- Left side: Navigation (link to All Articles) -->
+    <nav class="header-nav">
+      <a href="all-articles.html" class="all-articles-link">ALL ARTICLES</a>
+    </nav>
+    <!-- Right side: Published Date and Reading Time -->
+    <div class="header-meta">
+      <span class="published-date">Published on March 22, 2025</span>
+      <span class="reading-time"> • <span id="reading-time"></span> min read</span>
+    </div>
+  </header>
+
+  <!-- Main Title and Intro Section -->
+  <section class="main-title">
+    <h1>Your Article Title Here</h1>
+    <p class="intro">
+      Write a compelling introduction here. This section should summarize your article and entice the reader to continue.
+    </p>
+  </section>
+
+  <!-- Article Content: Focus on writing your content below -->
+  <main class="article-content">
+    <!-- Each section below with the class "content-section" will be used to build the TOC automatically.
+         Simply update the id, h2 heading, and content as needed. -->
+    <section id="abstract" class="content-section">
+      <p>
+        Write your abstract or introductory paragraph here. This content will appear at the top of your article.
+      </p>
+    </section>
+
+    <section id="section1" class="content-section">
+      <h2>Section 1 Title</h2>
+      <p>
+        Your detailed content goes here. Write as much as you need.
+      </p>
+    </section>
+
+    <section id="section2" class="content-section">
+      <h2>Section 2 Title</h2>
+      <p>
+        Continue writing your detailed content here.
+      </p>
+    </section>
+
+    <section id="section3" class="content-section">
+      <h2>Section 3 Title</h2>
+      <p>
+        Add additional sections as needed. Each section’s <code>&lt;h2&gt;</code> will automatically be added to the Table of Contents.
+      </p>
+    </section>
+
+    <!-- Add more sections as needed... -->
+
+    <section id="conclusion" class="content-section">
+      <h2>Conclusion</h2>
+      <p>
+        Write your conclusion here. Summarize your key points and add any final thoughts.
+      </p>
+    </section>
+  </main>
+
+  <!-- Table of Contents (TOC) on the left side (automatically generated) -->
+  <nav id="toc" class="toc-hidden">
+    <ul class="toc-list"></ul>
+  </nav>
+
+  <!-- Include the JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html>
+                             /* ======================================== */
+/* IBM Plex Theme Variables                 */
+/* ======================================== */
+:root {
+  /* Light Theme */
+  --bg-color: #ffffff;
+  --text-color: #161616;
+  --accent-color: #0f62fe;
+  --secondary-color: #525252;
+  --surface-color: #f4f4f4;
+  
+  /* Fonts */
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-serif: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-color: #161616;
+  --text-color: #ffffff;
+  --accent-color: #4589ff;
+  --secondary-color: #8d8d8d;
+  --surface-color: #262626;
+}
+
+/* ======================================== */
+/* Base Styles                              */
+/* ======================================== */
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0 auto;
+  max-width: 60rem;
+  padding: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+main {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+/* Headings */
+h1, h2 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: var(--text-color);
+}
+
+/* Header & Navigation */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.all-articles-link {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.header-meta {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+/* Removed the horizontal divider between header and content */
+
+/* Main Title Section */
+.main-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  transition: opacity 0.3s ease;
+}
+
+.main-title h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+
+.intro {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+/* Article Content */
+.article-content p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* Remove border-bottom lines in article headings */
+.article-content h2 {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+  /* border-bottom removed */
+  padding-bottom: 0;
+}
+
+/* Code Blocks: background color #252525 */
+pre {
+  background-color: #252525;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* TOC on the left: text-only */
+#toc {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.toc-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin-bottom: 0.5rem;
+}
+
+.toc-list a {
+  text-decoration: none;
+  color: #666; /* Gray by default */
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+/* TOC link hover/active for light mode */
+.toc-list a:hover,
+.toc-list a.active {
+  color: #000;
+}
+
+/* Dark mode TOC override: white on hover/active */
+[data-theme="dark"] .toc-list a:hover,
+[data-theme="dark"] .toc-list a.active {
+  color: #fff;
+}
+
+/* Theme Switch */
+.theme-switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.theme-switch input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.theme-switch label {
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  background: grey;
+  display: block;
+  border-radius: 25px;
+  position: relative;
+  transition: background 0.3s ease-in-out;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-indent: -9999px;
+}
+
+.theme-switch label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 21px;
+  height: 21px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.theme-switch input:checked + label {
+  background: #9acd32;
+}
+
+.theme-switch input:checked + label:after {
+  transform: translateX(25px);
+}
+
+.theme-switch label:active:after {
+  width: 23px;
+}
+
+/* Responsive: Fluid Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  #toc {
+    display: none;
+  }
+}
+                    document.addEventListener('DOMContentLoaded', () => {
+  // 1. Theme Toggle: Enable dark mode if checkbox is checked.
+  const themeCheckbox = document.getElementById('switch');
+  themeCheckbox.addEventListener('change', () => {
+    if (themeCheckbox.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  });
+
+  // 2. Calculate and display reading time (200 words per minute).
+  const content = document.querySelector('.article-content').textContent;
+  const wordCount = content.split(/\s+/).filter(w => w.length > 0).length;
+  const readingTime = Math.ceil(wordCount / 200);
+  document.getElementById('reading-time').textContent = readingTime;
+
+  // 3. Dynamically build the Table of Contents (TOC).
+  const sections = document.querySelectorAll('.content-section');
+  const tocList = document.querySelector('.toc-list');
+  
+  sections.forEach(section => {
+    const heading = section.querySelector('h2');
+    if (heading) {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="#${section.id}">${heading.textContent}</a>`;
+      tocList.appendChild(li);
+    }
+  });
+
+  // 4. Smooth scrolling for TOC links.
+  document.querySelectorAll('.toc-list a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // 5. Highlight active TOC link using IntersectionObserver.
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const tocLink = document.querySelector(`.toc-list a[href="#${id}"]`);
+      if (entry.isIntersecting && tocLink) {
+        document.querySelectorAll('.toc-list a').forEach(a => a.classList.remove('active'));
+        tocLink.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(section => observer.observe(section));
+
+  // 6. Show the TOC after scrolling past the abstract section.
+  const abstractSection = document.getElementById('abstract');
+  const toc = document.getElementById('toc');
+  const showTocThreshold = abstractSection.offsetHeight;
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > showTocThreshold) {
+      toc.classList.remove('toc-hidden');
+    } else {
+      toc.classList.add('toc-hidden');
+    }
+  });
+});
