@@ -85,16 +85,12 @@
             <strong>The Role of Topology in Data Science</strong> – Tech Meetup, April 15, 2025, Online. 
             <a href="https://example.com/register" target="_blank" rel="noopener noreferrer">Register</a>
             <p class="event-description">A sneak peek into the upcoming talk on topology in data science.</p>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" title="The Role of Topology in Data Science - Teaser" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+            <div class="video-container" data-video-id="VIDEO_ID_1" data-video-title="The Role of Topology in Data Science - Teaser"></div>
           </li>
           <li>
             <strong>Introduction to Distributed Systems</strong> – Local Developer Conference, May 10, 2025, New Delhi, India.
             <p class="event-description">Watch the trailer for my upcoming talk on distributed systems.</p>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Introduction to Distributed Systems - Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+            <div class="video-container" data-video-id="VIDEO_ID_2" data-video-title="Introduction to Distributed Systems - Trailer"></div>
           </li>
         </ul>
         <h2>Past Events</h2>
@@ -102,16 +98,12 @@
           <li>
             <strong>Understanding PageRank: A Deep Dive</strong> – Data Science Meetup, March 10, 2025, Online.
             <p class="event-description">Watch the full recording of my talk on PageRank.</p>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Understanding PageRank: A Deep Dive - Harsh Raj Kumar" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+            <div class="video-container" data-video-id="dQw4w9WgXcQ" data-video-title="Understanding PageRank: A Deep Dive - Harsh Raj Kumar"></div>
           </li>
           <li>
             <strong>Topological Data Analysis for Beginners</strong> – University Tech Workshop, February 20, 2025, Mumbai, India.
             <p class="event-description">Recording of my workshop on topological data analysis.</p>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/3tJ5RN7K5Q8" title="Topological Data Analysis for Beginners - Harsh Raj Kumar" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+            <div class="video-container" data-video-id="3tJ5RN7K5Q8" data-video-title="Topological Data Analysis for Beginners - Harsh Raj Kumar"></div>
           </li>
         </ul>
       </section>
