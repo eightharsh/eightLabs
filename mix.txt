@@ -561,3 +561,21 @@ footer.footer {
 
   themeSwitch.addEventListener('change', debounce(toggleTheme, 100));
 })();
+
+
+
+
+
+
+
+
+
+
+site wide addition for darker tone 
+
+
+
+
+
+<link rel="stylesheet" href="/styles.css">
+<script src="/script.js" defer></script>
