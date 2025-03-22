@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects by Harsh Raj Kumar – Explore a collection of technical projects with descriptions, GitHub links, and detailed insights.">
+  <title>Projects | Harsh Raj Kumar</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="../styles.css" as="style">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- SVG Symbols for Toggle and GitHub Icon -->
+  <svg display="none">
+    <symbol id="light" viewBox="0 0 24 24">
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(0,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(45,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(90,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(135,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(180,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(225,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(270,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(315,12,12)" />
+      </g>
+      <circle fill="currentColor" cx="12" cy="12" r="4" />
+    </symbol>
+    <symbol id="dark" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M15.5,15c-3.2-0.6-5.8-3.2-6.3-6.2C8.9,7,9.2,5.2,10,3.8c0.5-0.9-0.3-1.8-1.2-1.5C4.5,3.8,1.6,7.8,1.8,12.5c0.2,5.3,4.6,9.7,9.9,9.9c4.7,0.2,8.9-2.7,10.3-6.9c0.3-0.9-0.6-1.8-1.5-1.3C19,15,17.2,15.3,15.5,15z" />
+    </symbol>
+    <symbol id="github" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+    </symbol>
+  </svg>
+
+  <!-- Toggle Switch -->
+  <div class="theme-switch">
+    <label class="switch">
+      <input class="switch__input" type="checkbox" role="switch" id="switch" name="dark" />
+      <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+        <use href="#light" />
+      </svg>
+      <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+        <use href="#dark" />
+      </svg>
+      <span class="switch__inner">
+        <span class="switch__gradient"></span>
+      </span>
+      <span class="switch__inner-icons">
+        <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+          <use href="#light" />
+        </svg>
+        <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+          <use href="#dark" />
+        </svg>
+      </span>
+      <span class="switch__sr">Dark Mode</span>
+    </label>
+  </div>
+
+  <div class="content-wrapper">
+    <nav class="side-nav">
+      <ul>
+        <li><a href="/index.html">About</a></li>
+        <li><a href="/articles/index.html">Articles</a></li>
+        <li><a href="/lecture-notes/index.html">Lecture Notes</a></li>
+        <li><a href="/projects/index.html" class="active">Projects</a></li>
+        <li><a href="/talks/index.html">Talks</a></li>
+        <li><a href="/contacts/index.html">Contacts</a></li>
+        <li><a href="/resume/index.html">Resume</a></li>
+        <li><a href="/now/index.html">Now</a></li>
+      </ul>
+    </nav>
+    <div class="main-content">
+      <header>
+        <h1>Projects</h1>
+      </header>
+      <div class="project-grid">
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Algorithmic Topology</h2>
+            <a href="https://github.com/eightharsh/algorithmic-topology" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>A project exploring topological algorithms for data analysis, including persistent homology and mapper algorithms. Implements solutions for clustering and visualization of high-dimensional data.</p>
+          <a href="/projects/algorithmic-topology.html" class="details-link">Details →</a>
+        </div>
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Differential Geometry</h2>
+            <a href="https://github.com/eightharsh/differential-geometry" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>Implements numerical methods for differential geometry, focusing on curvature computation and geodesic paths on manifolds. Includes visualizations using Python and Matplotlib.</p>
+          <a href="/projects/differential-geometry.html" class="details-link">Details →</a>
+        </div>
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Functional Analysis</h2>
+            <a href="https://github.com/eightharsh/functional-analysis" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>Explores functional analysis concepts like Banach spaces and Hilbert spaces, with implementations of operators and spectral theory in Python. Includes practical applications in signal processing.</p>
+          <a href="/projects/functional-analysis.html" class="details-link">Details →</a>
+        </div>
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Symplectic Geometry</h2>
+            <a href="https://github.com/eightharsh/symplectic-geometry" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>Focuses on symplectic geometry for Hamiltonian systems, implementing numerical methods for solving differential equations on symplectic manifolds. Includes examples from classical mechanics.</p>
+          <a href="/projects/symplectic-geometry.html" class="details-link">Details →</a>
+        </div>
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Riemann Surfaces</h2>
+            <a href="https://github.com/eightharsh/riemann-surfaces" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>Studies Riemann surfaces and their applications in complex analysis, with code for computing harmonic forms and visualizing complex mappings using Python.</p>
+          <a href="/projects/riemann-surfaces.html" class="details-link">Details →</a>
+        </div>
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Group Theory</h2>
+            <a href="https://github.com/eightharsh/group-theory" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>Implements group theory algorithms for finite groups, including group actions and representations. Features examples of symmetry in computational geometry.</p>
+          <a href="/projects/group-theory.html" class="details-link">Details →</a>
+        </div>
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Differential Topology</h2>
+            <a href="https://github.com/eightharsh/differential-topology" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>Explores differential topology concepts like the Mazur swindle, with code for computing invariants of manifolds and visualizing topological transformations.</p>
+          <a href="/projects/differential-topology.html" class="details-link">Details →</a>
+        </div>
+        <div class="project-box">
+          <div class="project-header">
+            <h2>Advanced Reading Course</h2>
+            <a href="https://github.com/eightharsh/advanced-reading-course" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub Repository">
+              <svg class="github-icon" width="16" height="16" aria-hidden="true">
+                <use href="#github" />
+              </svg>
+            </a>
+          </div>
+          <p>A project on advanced topological concepts, including the classification of Poisson structures on compact surfaces. Features detailed mathematical derivations.</p>
+          <a href="/projects/advanced-reading-course.html" class="details-link">Details →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-copy">© <span id="copyright-year"></span> HARSH RAJ KUMAR</div>
+    <div class="footer-social">
+      <a href="https://github.com/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+      <a href="https://linkedin.com/in/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+      <a href="https://x.com/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="mailto:interact.harsh@gmail.com" aria-label="Email"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    </div>
+  </footer>
+  <script src="../script.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #161616;
+  --text-secondary: #525252;
+  --accent-color: #0f62fe;
+  --accent-color-rgb: 15, 98, 254;
+  --surface-color: #e0e0e0;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --content-max-width: 1000px;
+  --main-width: 700px;
+  --side-nav-width: 180px;
+  --trans-dur: 0.4s;
+  --trans-timing: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+[data-theme="dark"] {
+  --bg-color: #161616;
+  --text-color: #ffffff;
+  --text-secondary: #b3b3b3;
+  --accent-color: #4589ff;
+  --accent-color-rgb: 69, 137, 255;
+  --surface-color: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color var(--trans-dur) ease, color var(--trans-dur) ease;
+  will-change: background-color, color;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  transition: background-color var(--trans-dur) ease, color var(--trans-dur) ease;
+  will-change: background-color, color;
+}
+
+.content-wrapper {
+  display: flex;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.side-nav {
+  width: var(--side-nav-width);
+  margin-top: 4rem;
+  margin-right: 20px;
+}
+
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav ul li {
+  margin-bottom: 1rem;
+}
+
+.side-nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s ease, color var(--trans-dur) ease;
+}
+
+.side-nav ul li a:hover {
+  border-bottom: 2px solid rgba(var(--accent-color-rgb), 0.3);
+}
+
+.side-nav ul li a.active {
+  border-bottom: 2px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.main-content {
+  flex: 1;
+  max-width: var(--main-width);
+}
+
+.main-content header {
+  margin-bottom: 1.5rem;
+}
+
+h1, h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--text-color);
+  transition: color var(--trans-dur) ease;
+}
+
+h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+.bio {
+  margin: 0 0 1.5rem;
+  color: var(--text-secondary);
+  transition: color var(--trans-dur) ease;
+}
+
+.code {
+  font-family: var(--font-mono);
+  background-color: var(--surface-color);
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  position: relative;
+  margin-top: 1.5rem;
+  transition: background-color var(--trans-dur) ease;
+}
+
+.code::before {
+  content: attr(data-language);
+  position: absolute;
+  top: -0.75rem;
+  left: 0.75rem;
+  background-color: var(--accent-color);
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  transition: background-color var(--trans-dur) ease;
+}
+
+/* Project Grid Styles */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.project-box {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 218, 185, 0.2)); /* Light mode gradient */
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.4s ease;
+}
+
+[data-theme="dark"] .project-box {
+  background: linear-gradient(135deg, rgba(69, 137, 255, 0.2), rgba(100, 100, 100, 0.2)); /* Dark mode gradient using --accent-color and a darker shade */
+}
+
+.project-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.project-box h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color var(--trans-dur) ease;
+}
+
+.github-link {
+  color: var(--text-secondary);
+  transition: color var(--trans-dur) ease;
+}
+
+.github-link:hover {
+  color: var(--accent-color);
+}
+
+.github-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+.project-box p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  transition: color var(--trans-dur) ease;
+}
+
+.details-link {
+  font-size: 0.875rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--trans-dur) ease;
+}
+
+.details-link:hover {
+  text-decoration: underline;
+}
+
+footer.footer {
+  max-width: var(--main-width);
+  margin: 2rem auto 0;
+  margin-left: calc((100% - var(--content-max-width)) / 2 + var(--side-nav-width) + 20px);
+  border-top: 1px solid var(--surface-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  transition: border-color var(--trans-dur) ease;
+}
+
+.footer-copy {
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  transition: color var(--trans-dur) ease;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-social a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--trans-dur) ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+  transform: scale(1.1);
+}
+
+.footer-social .icon {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+
+.theme-switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.switch__input {
+  display: block;
+  width: 40px;
+  height: 20px;
+  background-color: var(--bg-color);
+  border-radius: 20px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color var(--trans-dur) var(--trans-timing);
+  will-change: background-color;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.switch__input:checked {
+  background-color: var(--text-secondary);
+}
+
+.switch__icon--outer {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: color var(--trans-dur) var(--trans-timing), opacity 0.2s ease;
+  will-change: color, opacity;
+}
+
+.switch__icon--outer:nth-of-type(2) {
+  left: auto;
+  right: 5px;
+}
+
+.switch__input:checked ~ .switch__icon--outer:first-of-type {
+  opacity: 0.5;
+}
+
+.switch__input:not(:checked) ~ .switch__icon--outer:nth-of-type(2) {
+  opacity: 0.5;
+}
+
+.switch__input:checked ~ .switch__icon--outer:nth-of-type(2),
+.switch__input:not(:checked) ~ .switch__icon--outer:first-of-type {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+.switch__inner {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 34px;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 14px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.switch__gradient {
+  display: block;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), rgba(var(--accent-color-rgb), 0.8));
+  border-radius: 14px;
+  transform: translateX(0);
+  transition: transform var(--trans-dur) var(--trans-timing);
+  will-change: transform;
+}
+
+.switch__input:checked ~ .switch__inner .switch__gradient {
+  transform: translateX(16px);
+}
+
+.switch__inner-icons {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 34px;
+  height: 14px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.switch__icon--inner {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  color: #ffffff;
+  transform: translateX(0) translateY(-50%);
+  transition: transform var(--trans-dur) var(--trans-timing), opacity 0.2s ease;
+  will-change: transform, opacity;
+}
+
+.switch__icon--inner:nth-child(2) {
+  left: auto;
+  right: 4px;
+  transform: translateX(0) translateY(-50%);
+}
+
+.switch__input:checked ~ .switch__inner-icons .switch__icon--inner:first-of-type {
+  transform: translateX(-16px) translateY(-50%);
+  opacity: 0;
+}
+
+.switch__input:checked ~ .switch__inner-icons .switch__icon--inner:nth-of-type(2) {
+  transform: translateX(0) translateY(-50%);
+  opacity: 1;
+}
+
+.switch__input:not(:checked) ~ .switch__inner-icons .switch__icon--inner:first-of-type {
+  transform: translateX(0) translateY(-50%);
+  opacity: 1;
+}
+
+.switch__input:not(:checked) ~ .switch__inner-icons .switch__icon--inner:nth-of-type(2) {
+  transform: translateX(16px) translateY(-50%);
+  opacity: 0;
+}
+
+.switch__input:hover,
+.switch__input:focus-visible {
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.05), 0 0 8px rgba(var(--accent-color-rgb), 0.5);
+}
+
+.switch__sr {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  .side-nav {
+    width: 100%;
+    margin: 2rem 0 1rem;
+  }
+  .main-content {
+    max-width: 100%;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  footer.footer {
+    max-width: 100%;
+    margin: 2rem 0 0;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+  }
+  footer.footer > div {
+    margin-bottom: 1rem;
+  }
+}
+
+
+
+
+
+(function () {
+  // Inject toggle switch if not present in HTML
+  if (!document.querySelector('.theme-switch')) {
+    const toggleHTML = `
+      <svg display="none">
+        <symbol id="light" viewBox="0 0 24 24">
+          <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(0,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(45,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(90,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(135,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(180,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(225,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(270,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(315,12,12)" />
+          </g>
+          <circle fill="currentColor" cx="12" cy="12" r="4" />
+        </symbol>
+        <symbol id="dark" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M15.5,15c-3.2-0.6-5.8-3.2-6.3-6.2C8.9,7,9.2,5.2,10,3.8c0.5-0.9-0.3-1.8-1.2-1.5C4.5,3.8,1.6,7.8,1.8,12.5c0.2,5.3,4.6,9.7,9.9,9.9c4.7,0.2,8.9-2.7,10.3-6.9c0.3-0.9-0.6-1.8-1.5-1.3C19,15,17.2,15.3,15.5,15z" />
+        </symbol>
+      </svg>
+      <div class="theme-switch">
+        <label class="switch">
+          <input class="switch__input" type="checkbox" role="switch" id="switch" name="dark" />
+          <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+            <use href="#light" />
+          </svg>
+          <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+            <use href="#dark" />
+          </svg>
+          <span class="switch__inner">
+            <span class="switch__gradient"></span>
+          </span>
+          <span class="switch__inner-icons">
+            <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+              <use href="#light" />
+            </svg>
+            <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+              <use href="#dark" />
+            </svg>
+          </span>
+          <span class="switch__sr">Dark Mode</span>
+        </label>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('afterbegin', toggleHTML);
+  }
+
+  // Get elements
+  const themeSwitch = document.getElementById('switch');
+  const rootElement = document.documentElement;
+  const copyEl = document.getElementById('copyright-year');
+  const savedTheme = localStorage.getItem('theme');
+
+  // Apply saved theme on page load
+  if (savedTheme === 'dark') {
+    rootElement.setAttribute('data-theme', 'dark');
+    themeSwitch.checked = true;
+  }
+
+  // Update copyright year
+  if (copyEl) {
+    copyEl.textContent = new Date().getFullYear();
+  }
+
+  // Debounce function to prevent excessive event triggers
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    requestAnimationFrame(() => {
+      if (themeSwitch.checked) {
+        rootElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        rootElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  };
+
+  // Add event listener for theme toggle
+  if (themeSwitch) {
+    themeSwitch.addEventListener('change', debounce(toggleTheme, 100));
+  }
+})();
