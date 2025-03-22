@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Articles</title>
+  <meta name="description" content="Articles by Harsh Raj Kumar – A computer engineering student exploring technology, coding, and innovative projects.">
+  <title>Articles | Harsh Raj Kumar</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Toggle Switch -->
+  <!-- SVG Symbols for Toggle -->
   <svg display="none">
     <symbol id="light" viewBox="0 0 24 24">
       <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -31,6 +35,7 @@
     </symbol>
   </svg>
 
+  <!-- Toggle Switch -->
   <div class="theme-switch">
     <label class="switch">
       <input class="switch__input" type="checkbox" role="switch" id="switch" name="dark" />
@@ -69,38 +74,41 @@
       </ul>
     </nav>
     <div class="main-content">
+      <header>
+        <h1 class="name">Articles</h1>
+      </header>
       <a href="/articles/phd-workflow.html" class="article-link">
         <article class="article">
-          <p class="article-meta">Apr 7, 2022 • 8 min. read</p>
+          <p class="intro">Apr 7, 2022 • 8 min. read</p>
           <h2>My Mathematics PhD research workflow</h2>
-          <p>Earlier this year I started a PhD in pure mathematics at KU Leuven in Belgium and in this blog post I discuss my research workflow, talk about how I take daily notes, both handwritten ones and ones in LaTeX and how I handle references, featuring a way to instantly add clickable references to my notes.</p>
+          <p>Over the past few years, I’ve been developing an efficient way to structure and organize my LaTeX lecture notes. In this blog post, I’ll explain my current solution for writing lecture notes and drawing figures before, which makes this the third post in a series explaining my note taking setup.</p>
         </article>
       </a>
       <a href="/articles/latex-lecture-notes.html" class="article-link">
         <article class="article">
-          <p class="article-meta">Sept 15, 2019 • 9 min. read</p>
+          <p class="intro">Sept 15, 2019 • 9 min. read</p>
           <h2>How I manage my LaTeX lecture notes</h2>
           <p>Over the past few years, I’ve been developing an efficient way to structure and organize my LaTeX lecture notes. In this blog post, I’ll explain my current solution for writing lecture notes and drawing figures before, which makes this the third post in a series explaining my note taking setup.</p>
         </article>
       </a>
       <a href="/articles/inkscape-figures.html" class="article-link">
         <article class="article">
-          <p class="article-meta">Apr 27, 2019 • 12 min. read</p>
+          <p class="intro">Apr 27, 2019 • 12 min. read</p>
           <h2>How I draw figures for my mathematical lecture notes using Inkscape</h2>
-          <p>In my previous blog post, I explained how I take lecture notes using Vim and LaTeX. In this post, I’ll talk about how I draw figures for my notes using Inkscape, and about my custom shortcut manager.</p>
+          <p>Over the past few years, I’ve been developing an efficient way to structure and organize my LaTeX lecture notes. In this blog post, I’ll explain my current solution for writing lecture notes and drawing figures before, which makes this the third post in a series explaining my note taking setup.</p>
         </article>
       </a>
       <a href="/articles/latex-vim-notes.html" class="article-link">
         <article class="article">
-          <p class="article-meta">Mar 17, 2019 • 15 min. read</p>
+          <p class="intro">Mar 17, 2019 • 15 min. read</p>
           <h2>How I’m able to take notes in mathematics lectures using LaTeX and Vim</h2>
-          <p>A while back I answered a question on Quora: Can people actually keep up with note-taking in Mathematics lectures with LaTeX. There, I explained my workflow of taking lecture notes using Vim and how I draw figures in Inkscape. However, a lot has changed since then and I’d like to write a few blogs explaining my workflow.</p>
+          <p>Over the past few years, I’ve been developing an efficient way to structure and organize my LaTeX lecture notes. In this blog post, I’ll explain my current solution for writing lecture notes and drawing figures before, which makes this the third post in a series explaining my note taking setup.</p>
         </article>
       </a>
     </div>
   </div>
   <footer class="footer">
-    <div class="footer-copy">© <span id="copyright-year"></span> All rights reserved.</div>
+    <div class="footer-copy">© <span id="copyright-year"></span> HARSH RAJ KUMAR</div>
     <div class="footer-social">
       <a href="https://github.com/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
       <a href="https://linkedin.com/in/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
@@ -108,9 +116,10 @@
       <a href="mailto:interact.harsh@gmail.com" aria-label="Email"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
     </div>
   </footer>
-  <script src="/script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
@@ -174,6 +183,7 @@ body {
 
 .side-nav {
   width: var(--side-nav-width);
+  margin-top: 4rem;
   margin-right: 20px;
 }
 
@@ -209,14 +219,28 @@ body {
   max-width: var(--main-width);
 }
 
-h2 {
+.main-content header {
+  margin-bottom: 1.5rem;
+}
+
+h1, h2 {
   font-family: var(--font-sans);
   font-weight: 600;
-  margin: 0 0 0.5rem;
   color: var(--text-color);
+  transition: color var(--trans-dur) ease;
+}
+
+h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+h2 {
   font-size: 1.25rem;
   line-height: 1.3;
-  transition: color var(--trans-dur) ease;
+  margin: 0 0 0.5rem;
 }
 
 .article-link {
@@ -229,18 +253,26 @@ h2 {
   margin-bottom: 2rem;
 }
 
-.article-meta {
-  font-size: 0.75rem;
+.intro {
+  margin: 0 0 0.5rem;
   color: var(--text-secondary);
+  font-size: 0.75rem;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
   transition: color var(--trans-dur) ease;
+}
+
+[data-theme="dark"] .intro {
+  color: var(--text-secondary);
 }
 
 .article p {
   font-size: 0.875rem;
-  color: var(--text-color);
+  color: var(--text-secondary);
   transition: color var(--trans-dur) ease;
+}
+
+[data-theme="dark"] .article p {
+  color: var(--text-secondary);
 }
 
 footer.footer {
@@ -445,7 +477,7 @@ footer.footer {
   }
   .side-nav {
     width: 100%;
-    margin: 0 0 1rem;
+    margin: 2rem 0 1rem;
   }
   .main-content {
     max-width: 100%;
@@ -461,6 +493,10 @@ footer.footer {
     margin-bottom: 1rem;
   }
 }
+
+
+
+
 
 
 
@@ -542,7 +578,7 @@ footer.footer {
         localStorage.setItem('theme', 'dark');
       } else {
         rootElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('theme', 'light'); 
       }
     });
   };
