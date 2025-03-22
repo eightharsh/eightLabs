@@ -1564,5 +1564,10 @@ footer.footer {
 
 
 
+File Structure:
 
+    Save the updated article pages as articles/article-1.html, articles/article-2.html, and articles/article-3.html.
+    Ensure the articles/index.html (articles list page) from the previous update is in the articles/ directory.
+    Ensure the styles.css and script.js files are in the parent directory (as referenced in the HTML with ../styles.css and ../script.js).
+    The index.html (homepage), projects/index.html, and detailed project pages should remain in their respective directories.
 
