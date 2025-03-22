@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How PageRank Works by Harsh Raj Kumar – A detailed technical explanation of Google's PageRank algorithm.">
+  <title>How PageRank Works | Harsh Raj Kumar</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- SVG Symbols for Toggle -->
+  <svg display="none">
+    <symbol id="light" viewBox="0 0 24 24">
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(0,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(45,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(90,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(135,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(180,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(225,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(270,12,12)" />
+        <line x1="12" y1="16" x2="12" y2="19" transform="rotate(315,12,12)" />
+      </g>
+      <circle fill="currentColor" cx="12" cy="12" r="4" />
+    </symbol>
+    <symbol id="dark" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M15.5,15c-3.2-0.6-5.8-3.2-6.3-6.2C8.9,7,9.2,5.2,10,3.8c0.5-0.9-0.3-1.8-1.2-1.5C4.5,3.8,1.6,7.8,1.8,12.5c0.2,5.3,4.6,9.7,9.9,9.9c4.7,0.2,8.9-2.7,10.3-6.9c0.3-0.9-0.6-1.8-1.5-1.3C19,15,17.2,15.3,15.5,15z" />
+    </symbol>
+  </svg>
+
+  <!-- Toggle Switch -->
+  <div class="theme-switch">
+    <label class="switch">
+      <input class="switch__input" type="checkbox" role="switch" id="switch" name="dark" />
+      <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+        <use href="#light" />
+      </svg>
+      <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+        <use href="#dark" />
+      </svg>
+      <span class="switch__inner">
+        <span class="switch__gradient"></span>
+      </span>
+      <span class="switch__inner-icons">
+        <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+          <use href="#light" />
+        </svg>
+        <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+          <use href="#dark" />
+        </svg>
+      </span>
+      <span class="switch__sr">Dark Mode</span>
+    </label>
+  </div>
+
+  <div class="content-wrapper">
+    <nav class="toc-nav">
+      <h3>Table of contents</h3>
+      <ul>
+        <li><a href="#introduction">Introduction to PageRank</a></li>
+        <li><a href="#mathematical-foundation">Mathematical Foundation</a></li>
+        <li><a href="#iterative-computation">Iterative Computation</a></li>
+        <li><a href="#handling-edge-cases">Handling Edge Cases</a>
+          <ul>
+            <li><a href="#dangling-pages">1. Dangling Pages</a></li>
+            <li><a href="#disconnected-components">2. Disconnected Components</a></li>
+            <li><a href="#spider-traps">3. Spider Traps</a></li>
+          </ul>
+        </li>
+        <li><a href="#practical-implementation">Practical Implementation</a>
+          <ul>
+            <li><a href="#graph-representation">1. Graph Representation</a></li>
+            <li><a href="#distributed-computing">2. Distributed Computing</a></li>
+            <li><a href="#convergence-optimization">3. Convergence Optimization</a></li>
+          </ul>
+        </li>
+        <li><a href="#modern-adaptations">Modern Adaptations</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </nav>
+    <div class="main-content">
+      <header>
+        <div class="header-meta">
+          <a href="/articles/index.html" class="back-link">← All Articles</a>
+          <div class="meta-info">
+            <span class="publish-date">Published: March 21, 2025</span>
+            <span class="reading-time">Reading Time: 12 min</span>
+          </div>
+        </div>
+        <hr class="header-divider">
+        <h1>How PageRank Works</h1>
+        <div class="abstract">
+          <h2>Abstract</h2>
+          <p>This article provides a comprehensive technical overview of Google's PageRank algorithm, a cornerstone of modern web search. We explore its mathematical foundation, iterative computation process, and practical implementation challenges, including handling edge cases like dangling pages and spider traps. Additionally, we discuss modern adaptations of PageRank and its role in contemporary search engine ranking systems.</p>
+        </div>
+      </header>
+      <section id="introduction">
+        <h2>Introduction to PageRank</h2>
+        <p>PageRank is an algorithm used by Google to rank web pages in its search engine results. Introduced in 1998, it was one of the key innovations that made Google’s search engine stand out. The core idea is to measure the importance of a web page based on the structure of hyperlinks on the web, treating links as "votes" of confidence from one page to another.</p>
+        <p>The algorithm models the web as a directed graph, where nodes represent web pages and edges represent hyperlinks. PageRank assigns a numerical score to each page, reflecting its relative importance. This score influences the page’s position in search results, with higher-ranked pages appearing closer to the top.</p>
+      </section>
+      <section id="mathematical-foundation">
+        <h2>Mathematical Foundation</h2>
+        <p>At its core, PageRank is based on a Markov chain model of a random surfer navigating the web. The surfer either follows a link on the current page with probability \(1 - d\) (where \(d\) is the damping factor) or jumps to a random page with probability \(d\). Typically, \(d\) is set to 0.15, meaning there’s an 85% chance the surfer follows a link.</p>
+        <p>The PageRank score \(PR(p_i)\) of a page \(p_i\) is defined recursively as:</p>
+        <pre class="math-equation">
+PR(p_i) = (1 - d) / N + d * Σ (PR(p_j) / L(p_j))
+        </pre>
+        <p>Where:</p>
+        <ul>
+          <li>\(N\) is the total number of pages in the web graph.</li>
+          <li>\(d\) is the damping factor (typically 0.15).</li>
+          <li>\(p_j\) are pages that link to \(p_i\).</li>
+          <li>\(L(p_j)\) is the number of outbound links on page \(p_j\).</li>
+        </ul>
+        <p>The first term, \((1 - d) / N\), represents the random jump probability, ensuring that every page has a minimum score. The second term, \(d * Σ (PR(p_j) / L(p_j))\), distributes the PageRank scores from incoming links, weighted by the number of outbound links on the linking pages.</p>
+      </section>
+      <section id="iterative-computation">
+        <h2>Iterative Computation</h2>
+        <p>PageRank is computed iteratively using the power iteration method. The process starts by initializing all pages with an equal score, typically \(1/N\). Then, the algorithm iteratively updates the scores using the PageRank formula until convergence (i.e., when the scores stabilize within a small threshold, such as 0.0001).</p>
+        <p>The iterative update can be expressed in matrix form. Let \(M\) be the transition matrix of the web graph, where \(M[i][j] = 1/L(p_j)\) if page \(p_j\) links to page \(p_i\), and 0 otherwise. The PageRank vector \(R\) (containing the scores of all pages) is updated as:</p>
+        <pre class="math-equation">
+R = (1 - d) / N * E + d * M * R
+        </pre>
+        <p>Where \(E\) is a vector of all 1s, representing the random jump probability. This process repeats until \(R\) converges to the principal eigenvector of the modified transition matrix.</p>
+      </section>
+      <section id="handling-edge-cases">
+        <h2>Handling Edge Cases</h2>
+        <p>The basic PageRank model has several edge cases that need to be addressed:</p>
+        <section id="dangling-pages">
+          <h3>1. Dangling Pages</h3>
+          <p>Dangling pages are pages with no outbound links (e.g., a PDF file). These pages create "sinks" in the graph, causing the random surfer to get stuck. To handle this, dangling pages are assumed to link to all other pages with equal probability, effectively redistributing their PageRank score across the graph.</p>
+        </section>
+        <section id="disconnected-components">
+          <h3>2. Disconnected Components</h3>
+          <p>If the web graph has disconnected components (sets of pages that don’t link to each other), the random surfer might get trapped in one component. The damping factor \(d\) ensures that the surfer can jump to any page, making the graph effectively connected and ensuring a unique solution.</p>
+        </section>
+        <section id="spider-traps">
+          <h3>3. Spider Traps</h3>
+          <p>Spider traps are cycles in the graph where a set of pages only link to each other (e.g., page A links to B, B links to C, and C links to A). Without the damping factor, the PageRank scores in the trap would grow indefinitely. The random jump term prevents this by allowing the surfer to escape the trap.</p>
+        </section>
+      </section>
+      <section id="practical-implementation">
+        <h2>Practical Implementation</h2>
+        <p>Implementing PageRank at scale, as Google does, involves several practical considerations:</p>
+        <section id="graph-representation">
+          <h3>1. Graph Representation</h3>
+          <p>The web graph is massive, with billions of nodes and edges. Google uses a compressed, distributed representation of the graph, often stored in a format like an adjacency list. For example:</p>
+          <pre class="file-structure">
+Page 1 -> [Page 2, Page 3]
+Page 2 -> [Page 3]
+Page 3 -> [Page 1]
+          </pre>
+          <p>This structure allows efficient iteration over the graph during computation.</p>
+        </section>
+        <section id="distributed-computing">
+          <h3>2. Distributed Computing</h3>
+          <p>PageRank is computed using distributed systems like MapReduce or Apache Spark. The graph is partitioned across multiple machines, and the PageRank scores are updated in parallel. Each iteration involves a map phase (distributing scores from linking pages) and a reduce phase (summing the contributions for each page).</p>
+        </section>
+        <section id="convergence-optimization">
+          <h3>3. Convergence Optimization</h3>
+          <p>To speed up convergence, Google may use techniques like the Gauss-Seidel method or adaptive damping, where the damping factor is adjusted dynamically. Additionally, the initial PageRank scores can be set based on prior knowledge (e.g., from a previous crawl) to reduce the number of iterations.</p>
+        </section>
+      </section>
+      <section id="modern-adaptations">
+        <h2>Modern Adaptations</h2>
+        <p>While PageRank remains a core component of Google’s ranking system, it has evolved significantly since 1998:</p>
+        <ul>
+          <li><strong>Personalization:</strong> PageRank can be personalized by adjusting the random jump vector to favor certain pages (e.g., based on user preferences or location).</li>
+          <li><strong>Topic-Sensitive PageRank:</strong> Instead of a uniform random jump, the surfer jumps to pages related to a specific topic, improving relevance for topic-specific queries.</li>
+          <li><strong>Integration with Other Signals:</strong> PageRank is now one of many signals in Google’s ranking algorithm, combined with factors like content relevance, user engagement, and machine learning models (e.g., RankBrain).</li>
+        </ul>
+      </section>
+      <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>PageRank revolutionized web search by providing a scalable, mathematical way to rank pages based on their link structure. Its elegance lies in its simplicity—a recursive formula that models the behavior of a random surfer—yet it scales to handle the complexity of the web through iterative computation and distributed systems. While modern search engines have moved beyond pure PageRank, its principles continue to influence how we understand and rank information on the internet.</p>
+      </section>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-copy">© <span id="copyright-year"></span> HARSH RAJ KUMAR</div>
+    <div class="footer-social">
+      <a href="https://github.com/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
+      <a href="https://linkedin.com/in/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+      <a href="https://x.com/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="mailto:interact.harsh@gmail.com" aria-label="Email"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    </div>
+  </footer>
+  <script src="script.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #161616;
+  --text-secondary: #525252;
+  --accent-color: #0f62fe;
+  --accent-color-rgb: 15, 98, 254;
+  --surface-color: #e0e0e0;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --content-max-width: 1000px;
+  --main-width: 700px;
+  --toc-width: 180px;
+  --trans-dur: 0.4s;
+  --trans-timing: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+[data-theme="dark"] {
+  --bg-color: #161616;
+  --text-color: #ffffff;
+  --text-secondary: #b3b3b3;
+  --accent-color: #4589ff;
+  --accent-color-rgb: 69, 137, 255;
+  --surface-color: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color var(--trans-dur) ease, color var(--trans-dur) ease;
+  will-change: background-color, color;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  transition: background-color var(--trans-dur) ease, color var(--trans-dur) ease;
+  will-change: background-color, color;
+}
+
+.content-wrapper {
+  display: flex;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.toc-nav {
+  width: var(--toc-width);
+  position: sticky;
+  top: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.toc-nav h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  transition: color var(--trans-dur) ease;
+}
+
+.toc-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.toc-nav ul li {
+  margin-bottom: 0.25rem;
+}
+
+.toc-nav ul li a {
+  font-size: 0.75rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color var(--trans-dur) ease;
+  display: block;
+  line-height: 1.2;
+}
+
+.toc-nav ul li a:hover {
+  color: var(--accent-color);
+}
+
+.toc-nav ul li a.active {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.toc-nav ul ul {
+  padding-left: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.toc-nav ul ul li a {
+  font-size: 0.7rem;
+}
+
+.main-content {
+  flex: 1;
+  max-width: var(--main-width);
+}
+
+.main-content header {
+  margin-bottom: 2rem;
+}
+
+.header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.meta-info {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  transition: color var(--trans-dur) ease;
+}
+
+.publish-date,
+.reading-time {
+  display: inline-block;
+}
+
+.header-divider {
+  border: 0;
+  border-top: 1px solid var(--surface-color);
+  margin: 1rem 0;
+  transition: border-color var(--trans-dur) ease;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--trans-dur) ease;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 2.5rem; /* Increased for big, bold heading */
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  font-weight: 700; /* Bold */
+}
+
+h2 {
+  font-size: 1.75rem; /* Medium size for section headings */
+  line-height: 1.3;
+  margin: 2rem 0 1rem;
+  font-weight: 600; /* Bold */
+}
+
+h3 {
+  font-size: 1.25rem; /* Medium size for sub-section headings */
+  line-height: 1.3;
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 600; /* Bold */
+}
+
+h1, h2, h3 {
+  font-family: var(--font-sans);
+  color: var(--text-color);
+  transition: color var(--trans-dur) ease;
+}
+
+.abstract {
+  margin: 1rem 0;
+}
+
+.abstract h2 {
+  font-size: 1.25rem; /* Smaller than section headings */
+  margin-bottom: 0.5rem;
+}
+
+.abstract p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  transition: color var(--trans-dur) ease;
+}
+
+section p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  transition: color var(--trans-dur) ease;
+}
+
+[data-theme="dark"] section p {
+  color: var(--text-secondary);
+}
+
+section ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+section ul li {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  transition: color var(--trans-dur) ease;
+}
+
+.math-equation {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  background-color: var(--surface-color);
+  padding: 1rem;
+  border-radius: 4px;
+  white-space: pre;
+  overflow-x: auto;
+  transition: background-color var(--trans-dur) ease;
+  text-align: center;
+}
+
+.file-structure {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  background-color: var(--surface-color);
+  padding: 1rem;
+  border-radius: 4px;
+  white-space: pre;
+  overflow-x: auto;
+  transition: background-color var(--trans-dur) ease;
+}
+
+footer.footer {
+  max-width: var(--main-width);
+  margin: 2rem auto 0;
+  margin-left: calc((100% - var(--content-max-width)) / 2 + var(--toc-width));
+  border-top: 1px solid var(--surface-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  transition: border-color var(--trans-dur) ease;
+}
+
+.footer-copy {
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  transition: color var(--trans-dur) ease;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-social a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--trans-dur) ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+  transform: scale(1.1);
+}
+
+.footer-social .icon {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+
+.theme-switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.switch__input {
+  display: block;
+  width: 40px;
+  height: 20px;
+  background-color: var(--bg-color);
+  border-radius: 20px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color var(--trans-dur) var(--trans-timing);
+  will-change: background-color;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.switch__input:checked {
+  background-color: var(--text-secondary);
+}
+
+.switch__icon--outer {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  color: var(--text-secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: color var(--trans-dur) var(--trans-timing), opacity 0.2s ease;
+  will-change: color, opacity;
+}
+
+.switch__icon--outer:nth-of-type(2) {
+  left: auto;
+  right: 5px;
+}
+
+.switch__input:checked ~ .switch__icon--outer:first-of-type {
+  opacity: 0.5;
+}
+
+.switch__input:not(:checked) ~ .switch__icon--outer:nth-of-type(2) {
+  opacity: 0.5;
+}
+
+.switch__input:checked ~ .switch__icon--outer:nth-of-type(2),
+.switch__input:not(:checked) ~ .switch__icon--outer:first-of-type {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+.switch__inner {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 34px;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 14px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.switch__gradient {
+  display: block;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), rgba(var(--accent-color-rgb), 0.8));
+  border-radius: 14px;
+  transform: translateX(0);
+  transition: transform var(--trans-dur) var(--trans-timing);
+  will-change: transform;
+}
+
+.switch__input:checked ~ .switch__inner .switch__gradient {
+  transform: translateX(16px);
+}
+
+.switch__inner-icons {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 34px;
+  height: 14px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.switch__icon--inner {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  color: #ffffff;
+  transform: translateX(0) translateY(-50%);
+  transition: transform var(--trans-dur) var(--trans-timing), opacity 0.2s ease;
+  will-change: transform, opacity;
+}
+
+.switch__icon--inner:nth-child(2) {
+  left: auto;
+  right: 4px;
+  transform: translateX(0) translateY(-50%);
+}
+
+.switch__input:checked ~ .switch__inner-icons .switch__icon--inner:first-of-type {
+  transform: translateX(-16px) translateY(-50%);
+  opacity: 0;
+}
+
+.switch__input:checked ~ .switch__inner-icons .switch__icon--inner:nth-of-type(2) {
+  transform: translateX(0) translateY(-50%);
+  opacity: 1;
+}
+
+.switch__input:not(:checked) ~ .switch__inner-icons .switch__icon--inner:first-of-type {
+  transform: translateX(0) translateY(-50%);
+  opacity: 1;
+}
+
+.switch__input:not(:checked) ~ .switch__inner-icons .switch__icon--inner:nth-of-type(2) {
+  transform: translateX(16px) translateY(-50%);
+  opacity: 0;
+}
+
+.switch__input:hover,
+.switch__input:focus-visible {
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.05), 0 0 8px rgba(var(--accent-color-rgb), 0.5);
+}
+
+.switch__sr {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  .toc-nav {
+    position: static;
+    width: 100%;
+    max-height: none;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .main-content {
+    max-width: 100%;
+  }
+  .header-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .meta-info {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  footer.footer {
+    max-width: 100%;
+    margin: 2rem 0 0;
+    margin-left: 0;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+  }
+  footer.footer > div {
+    margin-bottom: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+(function () {
+  // Theme Switch Setup
+  if (!document.querySelector('.theme-switch')) {
+    const toggleHTML = `
+      <svg display="none">
+        <symbol id="light" viewBox="0 0 24 24">
+          <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(0,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(45,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(90,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(135,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(180,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(225,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(270,12,12)" />
+            <line x1="12" y1="16" x2="12" y2="19" transform="rotate(315,12,12)" />
+          </g>
+          <circle fill="currentColor" cx="12" cy="12" r="4" />
+        </symbol>
+        <symbol id="dark" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M15.5,15c-3.2-0.6-5.8-3.2-6.3-6.2C8.9,7,9.2,5.2,10,3.8c0.5-0.9-0.3-1.8-1.2-1.5C4.5,3.8,1.6,7.8,1.8,12.5c0.2,5.3,4.6,9.7,9.9,9.9c4.7,0.2,8.9-2.7,10.3-6.9c0.3-0.9-0.6-1.8-1.5-1.3C19,15,17.2,15.3,15.5,15z" />
+        </symbol>
+      </svg>
+      <div class="theme-switch">
+        <label class="switch">
+          <input class="switch__input" type="checkbox" role="switch" id="switch" name="dark" />
+          <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+            <use href="#light" />
+          </svg>
+          <svg class="switch__icon switch__icon--outer" width="10px" height="10px" aria-hidden="true">
+            <use href="#dark" />
+          </svg>
+          <span class="switch__inner">
+            <span class="switch__gradient"></span>
+          </span>
+          <span class="switch__inner-icons">
+            <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+              <use href="#light" />
+            </svg>
+            <svg class="switch__icon switch__icon--inner" width="10px" height="10px" aria-hidden="true">
+              <use href="#dark" />
+            </svg>
+          </span>
+          <span class="switch__sr">Dark Mode</span>
+        </label>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('afterbegin', toggleHTML);
+  }
+
+  const themeSwitch = document.getElementById('switch');
+  const rootElement = document.documentElement;
+  const copyEl = document.getElementById('copyright-year');
+  const savedTheme = localStorage.getItem('theme');
+
+  if (savedTheme === 'dark') {
+    rootElement.setAttribute('data-theme', 'dark');
+    themeSwitch.checked = true;
+  }
+
+  if (copyEl) {
+    copyEl.textContent = new Date().getFullYear();
+  }
+
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  const toggleTheme = () => {
+    requestAnimationFrame(() => {
+      if (themeSwitch.checked) {
+        rootElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        rootElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  };
+
+  themeSwitch.addEventListener('change', debounce(toggleTheme, 100));
+
+  // Table of Contents Scroll Highlighting
+  const tocLinks = document.querySelectorAll('.toc-nav a');
+  const sections = Array.from(tocLinks).map(link => {
+    const id = link.getAttribute('href').substring(1);
+    return document.getElementById(id);
+  });
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -50% 0px',
+    threshold: 0
+  };
+
+  const observerCallback = (entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const tocLink = document.querySelector(`.toc-nav a[href="#${id}"]`);
+      if (entry.isIntersecting) {
+        tocLinks.forEach(link => link.classList.remove('active'));
+        tocLink.classList.add('active');
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  sections.forEach(section => observer.observe(section));
+})();
