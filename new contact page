@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="HARSH – Contact me for collaboration, inquiries, or just to say hi.">
+  <meta name="description" content="HARSH – Contact me to get in touch or for collaboration opportunities.">
   <title>HARSH | Contact</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,27 +34,26 @@
     </aside>
     <main class="main-content">
       <article class="post">
-        <h2 class="post-title">Get in Touch</h2>
-        <p>I'm always open to collaboration, inquiries, or just a friendly chat. Feel free to reach out using the form below.</p>
+        <h2 class="post-title">Contact Me</h2>
+        <p class="post-meta">Get in touch for collaborations or inquiries.</p>
+        <p>Fill out the form below, and I’ll get back to you as soon as possible.</p>
       </article>
-      <article class="post">
-        <h2 class="post-title">Contact Form</h2>
-        <form class="contact-form">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="form-submit">Send Message</button>
-        </form>
-      </article>
+      <form id="contact-form" class="contact-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="entry.1900485977" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="entry.1393663075" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Describe</label>
+          <textarea id="message" name="entry.703548309" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+        <div id="form-feedback" style="margin-top: 1rem; display: none;"></div>
+      </form>
     </main>
   </div>
   <footer class="footer">
@@ -71,6 +70,8 @@
   <script src="../script.js" defer></script>
 </body>
 </html>
+
+
 
 
 
@@ -189,7 +190,7 @@ body {
   max-width: 100%;
 }
 
-/* Post (Used in About and Contact Pages) */
+/* Post (Used in About, Contact, and Now Pages) */
 .post {
   margin-bottom: 2rem;
 }
@@ -201,69 +202,121 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.post-meta {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-bottom: 0.5rem;
+}
+
 .post p {
   font-size: 1rem;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
+.post p a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color var(--trans-dur) var(--trans-timing);
+}
+
+.post p a:hover {
+  color: var(--text-color);
+}
+
 /* Contact Form */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem; /* Increased gap for better spacing */
   max-width: 100%;
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border: 1px solid var(--surface-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem; /* Increased gap between label and input */
 }
 
 .form-group label {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-color);
+  text-transform: uppercase; /* Matches IBM/Carbon style */
+  letter-spacing: 0.02em;
 }
 
 .form-group input,
 .form-group textarea {
   font-family: var(--font-sans);
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.75rem; /* Increased padding for better touch targets */
   border: 1px solid var(--surface-color);
   border-radius: 4px;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: border-color var(--trans-dur) var(--trans-timing);
+  transition: border-color var(--trans-dur) var(--trans-timing), box-shadow var(--trans-dur) var(--trans-timing);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2); /* Subtle glow on focus */
 }
 
 .form-group textarea {
   resize: vertical;
+  min-height: 120px; /* Ensure textarea has enough height for messages */
 }
 
 .form-submit {
   font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 500;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 2rem; /* Wider padding for better click area */
   background-color: var(--accent-color);
   color: var(--bg-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color var(--trans-dur) var(--trans-timing);
+  transition: background-color var(--trans-dur) var(--trans-timing), transform var(--trans-dur) var(--trans-timing);
+  align-self: flex-start; /* Align button to the left */
 }
 
 .form-submit:hover {
-  background-color: var(--text-color);
+  background-color: #003087; /* Darker shade of accent color for hover */
+  transform: translateY(-1px); /* Subtle lift effect on hover */
+}
+
+.form-submit:disabled {
+  background-color: var(--surface-color);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Form Feedback Message */
+#form-feedback {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: rgba(var(--accent-color-rgb), 0.1); /* Light background for success */
+}
+
+#form-feedback[style*="color: green"] {
+  background-color: rgba(0, 128, 0, 0.1); /* Light green background for success */
+}
+
+#form-feedback[style*="color: red"] {
+  background-color: rgba(255, 0, 0, 0.1); /* Light red background for error */
 }
 
 /* Back to All Articles Link (Not used in Contact page, but kept for consistency) */
@@ -778,7 +831,12 @@ footer.footer {
 
   /* Contact Form on Mobile */
   .contact-form {
-    gap: 0.75rem;
+    gap: 1rem; /* Reduced gap for mobile */
+    padding: 1rem;
+  }
+
+  .form-group {
+    gap: 0.25rem; /* Reduced gap between label and input */
   }
 
   .form-group label {
@@ -788,20 +846,25 @@ footer.footer {
   .form-group input,
   .form-group textarea {
     font-size: 0.875rem;
-    padding: 0.4rem;
+    padding: 0.5rem;
+  }
+
+  .form-group textarea {
+    min-height: 100px; /* Slightly smaller textarea on mobile */
   }
 
   .form-submit {
     font-size: 0.875rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
+    width: 100%; /* Full-width button on mobile */
+    align-self: stretch; /* Stretch to full width */
+  }
+
+  #form-feedback {
+    font-size: 0.75rem;
+    padding: 0.5rem;
   }
 }
-
-
-
-
-
-
 
 
 
@@ -813,6 +876,60 @@ footer.footer {
     copyEl.textContent = new Date().getFullYear();
   }
 
+  // Update last modified timestamp on Now page
+  const lastUpdatedEl = document.getElementById('last-updated');
+  if (lastUpdatedEl) {
+    const lastModified = new Date(document.lastModified);
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    };
+    const formattedDate = lastModified.toLocaleDateString('en-US', options);
+    lastUpdatedEl.textContent = formattedDate;
+  }
+
+  // Handle Contact Form Submission to Google Sheets
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    const feedbackEl = document.getElementById('form-feedback');
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      const formData = new FormData(contactForm);
+      const submitButton = contactForm.querySelector('.form-submit');
+      submitButton.disabled = true; // Disable the button to prevent multiple submissions
+
+      // Google Form's formResponse URL
+      const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScWqGuYlsxtNqcmMgp7KlBGX59gpAWviEHkNa-T9wvnY2oA6w/formResponse';
+
+      fetch(googleFormUrl, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Required for Google Forms submission
+      })
+        .then(() => {
+          // Success: Show a success message and reset the form
+          feedbackEl.style.display = 'block';
+          feedbackEl.style.color = 'green';
+          feedbackEl.textContent = 'Thank you! Your message has been submitted successfully.';
+          contactForm.reset();
+          submitButton.disabled = false;
+        })
+        .catch((error) => {
+          // Error: Show an error message
+          feedbackEl.style.display = 'block';
+          feedbackEl.style.color = 'red';
+          feedbackEl.textContent = 'There was an error submitting your message. Please try again later.';
+          console.error('Error:', error);
+          submitButton.disabled = false;
+        });
+    });
+  }
+
   // Table of Contents (TOC) Scroll Highlighting
   const tocLinks = document.querySelectorAll('.toc-link');
   const sections = document.querySelectorAll('.article-section, .talk-section');
@@ -821,7 +938,7 @@ footer.footer {
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5 // Highlight when 50% of the section is in view
+      threshold: 0.5
     };
 
     const observerCallback = (entries) => {
@@ -842,13 +959,3 @@ footer.footer {
     sections.forEach(section => observer.observe(section));
   }
 })();
-
-
-
-
-
-File Structure:
-
-    Save the updated page as contacts/index.html in the contacts/ directory.
-    Ensure the styles.css and script.js files are in the parent directory (as referenced in the HTML with ../styles.css and ../script.js).
-    The index.html (homepage), projects/index.html, articles/index.html, talks/index.html, and detailed article pages should remain in their respective directories.
