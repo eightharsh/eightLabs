@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HARSH RAJ KUMAR – A computer engineering student exploring technology, coding, and innovative projects." />
+  <title>Harsh Raj Kumar</title>
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- IBM Plex Fonts with font-display swap -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Serif:wght@500&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="icon" href="favicon.png" type="image/x-icon" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R01DEX379F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-R01DEX379F');
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Harsh Raj Kumar",
+    "url": "https://eightharsh.com",
+    "sameAs": [
+      "https://github.com/eightharsh",
+      "https://linkedin.com/in/eightharsh",
+      "https://x.com/eightharsh"
+    ],
+    "jobTitle": "Computer Engineering Student",
+    "description": "Computer engineering student exploring technology, coding, and innovative projects."
+  }
+  </script>
+</head>
+<body>
+  <!-- Fixed Custom Theme Switch (small toggle button) -->
+  <div class="theme-switch">
+    <input type="checkbox" id="switch" />
+    <label for="switch">Toggle</label>
+  </div>
+
+  <main>
+    <header>
+      <h1 class="name">HARSH RAJ KUMAR</h1>
+      <p class="bio">
+        Hi, I'm HARSH—a computer engineering student driven by curiosity and a love for technology.
+        I'm on an exciting path of discovery, diving deep into coding,
+        innovative language-building projects, and various tech endeavors.
+      </p>
+    </header>
+
+    <section class="blog">
+      <h2 class="section-title">Blog</h2>
+      
+      <article class="blog-post" data-animate>
+        <h3>The Power of Open Source</h3>
+        <time datetime="2023-01-01">January 1, 2023</time>
+        <p>
+          Open-source software has revolutionized the tech industry by providing transparent, collaborative, and community-driven development.
+        </p>
+      </article>
+
+      <article class="blog-post" data-animate>
+        <h3>Understanding Web Performance Optimization</h3>
+        <time datetime="2023-02-15">February 15, 2023</time>
+        <p>
+          Faster websites lead to better user experiences and improved SEO rankings.
+        </p>
+      </article>
+    </section>
+
+    <section class="social">
+      <h2 class="section-title">Connect with Me</h2>
+      <div class="social-links">
+        <a href="https://github.com/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://x.com/eightharsh" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter) profile">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          X
+        </a>
+        <a href="mailto:interact.harsh@gmail.com" aria-label="Send email">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          Email
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="copyright-year"></span> HARSH RAJ KUMAR</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+// Check if running in a browser window (page context)
+if (typeof window !== 'undefined') {
+  (function () {
+    /* ----------------------------------------
+       Theme Toggle using the custom switch checkbox
+    ---------------------------------------- */
+    const themeSwitch = document.getElementById('switch');
+    const rootElement = document.documentElement;
+
+    // Initialize theme based on saved preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      rootElement.setAttribute('data-theme', 'dark');
+      themeSwitch.checked = true;
+    }
+
+    themeSwitch.addEventListener('change', function () {
+      if (this.checked) {
+        rootElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        rootElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    /* ----------------------------------------
+       Hide toggle button after scrolling down
+    ---------------------------------------- */
+    const toggleButton = document.querySelector(".theme-switch");
+
+    document.addEventListener("scroll", function () {
+      if (window.scrollY > 100) {
+        toggleButton.classList.add("hidden");
+      } else {
+        toggleButton.classList.remove("hidden");
+      }
+    });
+
+    /* ----------------------------------------
+       Other Site Scripts
+    ---------------------------------------- */
+    // Update copyright year
+    const updateCopyrightYear = () => {
+      const copyrightEl = document.getElementById('copyright-year');
+      if (copyrightEl) {
+        copyrightEl.textContent = new Date().getFullYear();
+      }
+    };
+
+    // Handle individual blog post click interactions
+    const handleBlogPostClick = (post) => {
+      post.classList.add('clicked');
+      setTimeout(() => post.classList.remove('clicked'), 200);
+
+      const originalBg = post.style.backgroundColor;
+      const highlightBg = 'rgba(49, 130, 206, 0.1)';
+      post.style.backgroundColor = highlightBg;
+      setTimeout(() => {
+        post.style.backgroundColor = originalBg;
+      }, 300);
+    };
+
+    // Initialize blog post interactions
+    const initBlogPostInteractions = () => {
+      const blogPosts = document.querySelectorAll('.blog-post');
+      blogPosts.forEach((post) => {
+        post.addEventListener('click', () => handleBlogPostClick(post));
+      });
+    };
+
+    // Set up Intersection Observer for element animations
+    const initIntersectionObserverAnimations = () => {
+      const animateEls = document.querySelectorAll('[data-animate]');
+      animateEls.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+      });
+
+      const observerOptions = { threshold: 0.1 };
+
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+      animateEls.forEach(el => observer.observe(el));
+    };
+
+    // Enable keyboard navigation style toggling
+    const initKeyboardNavigation = () => {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          document.body.classList.add('keyboard-nav');
+        }
+      });
+
+      document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-nav');
+      });
+    };
+
+    // DOMContentLoaded: initialize all functions
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCopyrightYear();
+      initBlogPostInteractions();
+      initIntersectionObserverAnimations();
+      initKeyboardNavigation();
+    });
+  })();
+}
+
+
+
+
+
+
+
+
+
+/* ======================================== */
+/* IBM Plex Theme Variables                 */
+/* ======================================== */
+:root {
+  /* Light Theme */
+  --bg-color: #ffffff;
+  --text-color: #161616;
+  --accent-color: #0f62fe;
+  --secondary-color: #525252;
+  --surface-color: #f4f4f4;
+  
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-color: #161616;
+  --text-color: #ffffff;
+  --accent-color: #4589ff;
+  --secondary-color: #8d8d8d;
+  --surface-color: #262626;
+}
+
+/* ======================================== */
+/* Base Styles                              */
+/* ======================================== */
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  margin: 2rem 0 1rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--surface-color);
+  margin: 3rem 0 2rem;
+}
+
+.bio, p {
+  margin-bottom: 1rem;
+}
+
+.bio {
+  max-width: 70ch;
+}
+
+.blog-post, .card {
+  background-color: var(--surface-color);
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.blog-post:hover, .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post time {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  color: var(--secondary-color);
+}
+
+/* ======================================== */
+/* Social & Footer Styles                   */
+/* ======================================== */
+.social {
+  margin: 2rem 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease-in-out;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.social-links a:hover {
+  background: rgba(49, 130, 206, 0.1);
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--surface-color);
+  font-size: 0.875rem;
+  color: var(--secondary-color);
+}
+
+/* ======================================== */
+/* Custom Theme Switch                      */
+/* ======================================== */
+.theme-switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.theme-switch input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.theme-switch label {
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  background: grey;
+  display: block;
+  border-radius: 25px;
+  position: relative;
+  transition: background 0.3s ease-in-out;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-indent: -9999px;
+}
+
+.theme-switch label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 21px;
+  height: 21px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.theme-switch input:checked + label {
+  background: #9acd32;
+}
+
+.theme-switch input:checked + label:after {
+  transform: translateX(25px);
+}
+
+.theme-switch label:active:after {
+  width: 23px;
+}
+
+[data-theme="dark"] .blog-post:hover, [data-theme="dark"] .card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+    font-size: 16px;
+  }
+  .blog-post, .card {
+    padding: 1rem;
+  }
+  .social-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate] {
+  will-change: opacity, transform;
+  animation: fadeIn 0.6s ease backwards;
+}
